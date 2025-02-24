@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灰色世界的繼承人</title>
+    <style>
+        @font-face {
+            font-family: 'PixelFont';
+            src: url('Cubic_11.woff2') format('woff2'),
+                 url('Cubic_11.woff') format('woff'),
+                 url('Cubic_11.ttf') format('truetype');
+        }
+        body {
+            font-family: 'PixelFont', Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        #game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: url('pixel_art_placeholder.png') no-repeat center center/cover;
+        }
+        #dialogue-box {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            background: rgba(0, 0, 0, 0.7);
+            border: 3px solid #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            font-size: 18px;
+            font-family: 'PixelFont', Arial, sans-serif;
+        }
+        #choices {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .choice {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 20px;
+            background: #444;
+            color: white;
+            border: 2px solid white;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: 'PixelFont', Arial, sans-serif;
+        }
+        .choice:hover {
+            background: #666;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="dialogue-box">
+            <p id="game-text">世界已經變成灰色，你是最後的王國繼承人。你的旅程將決定世界的未來……</p>
+            <div id="choices">
+                <button class="choice" onclick="startGame()">開始旅程</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function startGame() {
+            document.getElementById("game-text").innerText = "你站在荒蕪的大地上，遠方隱約傳來低沉的呢喃聲。你要……";
+            document.getElementById("choices").innerHTML = "";
+            document.getElementById("game-container").style.backgroundImage = "url('new_pixel_art_scene.png')";
+            
+            let choice1 = document.createElement("button");
+            choice1.innerText = "前往聲音的方向";
+            choice1.className = "choice";
+            choice1.onclick = function() {
+                document.getElementById("game-text").innerText = "你走向聲音，發現一隻奇異的生物正在低語……";
+                document.getElementById("game-container").style.backgroundImage = "url('creature_pixel_art.png')";
+            };
+            
+            let choice2 = document.createElement("button");
+            choice2.innerText = "避開聲音，繼續前進";
+            choice2.className = "choice";
+            choice2.onclick = function() {
+                document.getElementById("game-text").innerText = "你選擇無視聲音，繼續在荒蕪的大地上前行……";
+                document.getElementById("game-container").style.backgroundImage = "url('wasteland_pixel_art.png')";
+            };
+            
+            document.getElementById("choices").appendChild(choice1);
+            document.getElementById("choices").appendChild(choice2);
+        }
+    </script>
+</body>
+</html>
